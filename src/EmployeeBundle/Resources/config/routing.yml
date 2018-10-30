@@ -1,0 +1,7 @@
+employee_employee:
+    resource: "@EmployeeBundle/Resources/config/routing/employee.yml"
+    prefix:   /employee
+
+employee_homepage:
+    path:     /
+    defaults: { _controller: EmployeeBundle:Default:index }
