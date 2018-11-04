@@ -1,28 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Presences list</h1>
-
-    <table>
+    <h1>Historique des Presences</h1>
+    <table class="table">
         <thead>
             <tr>
-                <th>Idpresence</th>
+                <th>Nom</th>
+                <th>Prénom</th>
                 <th>Date</th>
                 <th>Status</th>
                 <th>Lieu</th>
-                <th>Montantday</th>
-                <th>Actions</th>
+                <th>Montant Journalier</th>
+
+
+
             </tr>
         </thead>
         <tbody>
         {% for presence in presences %}
             <tr>
-                <td><a href="{{ path('presence_show', { 'idPresence': presence.idPresence }) }}">{{ presence.idPresence }}</a></td>
+                <td>{{ presence.idEmployee.prenom }}</td>
+                <td>{{ presence.idEmployee.nom }}</td>
                 <td>{% if presence.date %}{{ presence.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ presence.status }}</td>
                 <td>{{ presence.lieu }}</td>
                 <td>{{ presence.montantDay }}</td>
-                <td>
+
+                {#<td>
                     <ul>
                         <li>
                             <a href="{{ path('presence_show', { 'idPresence': presence.idPresence }) }}">show</a>
@@ -31,15 +35,11 @@
                             <a href="{{ path('presence_edit', { 'idPresence': presence.idPresence }) }}">edit</a>
                         </li>
                     </ul>
-                </td>
-            </tr>
+                </td>#}
+
+                               </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('presence_new') }}">Create a new presence</a>
-        </li>
-    </ul>
 {% endblock %}

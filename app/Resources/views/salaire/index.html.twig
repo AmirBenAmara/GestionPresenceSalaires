@@ -1,43 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Salaires list</h1>
-
-    <table>
+    <h1>Historique des  Salaires</h1>
+    <table class="table">
         <thead>
             <tr>
-                <th>Idsalaire</th>
-                <th>Datepayment</th>
-                <th>Montantweek</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de paiement</th>
+                <th>Montant Hebdomadaire</th>
                 <th>Avance</th>
-                <th>Actions</th>
+                <th>Salaire</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
         {% for salaire in salaires %}
             <tr>
-                <td><a href="{{ path('salaire_show', { 'idSalaire': salaire.idSalaire }) }}">{{ salaire.idSalaire }}</a></td>
+                <td>{{ salaire.idEmployee.nom }}</td>
+                <td>{{ salaire.idEmployee.prenom }}</td>
                 <td>{% if salaire.datePayment %}{{ salaire.datePayment|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ salaire.montantweek }}</td>
                 <td>{{ salaire.avance }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('salaire_show', { 'idSalaire': salaire.idSalaire }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('salaire_edit', { 'idSalaire': salaire.idSalaire }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{{ salaire.montantweek - salaire.avance }}</td>
+                <td>{{ salaire.isPaid}}</td>
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('salaire_new') }}">Create a new salaire</a>
-        </li>
-    </ul>
+
 {% endblock %}

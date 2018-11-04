@@ -146,7 +146,10 @@ class Employee
         $this->numTel = $numTel;
     }
 
-
+    function __toString()
+    {
+        return $this->getNom();
+    }
 
 
 }

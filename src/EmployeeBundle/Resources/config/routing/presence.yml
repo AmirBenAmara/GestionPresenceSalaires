@@ -2,6 +2,10 @@ presence_index:
     path:     /
     defaults: { _controller: "EmployeeBundle:Presence:index" }
     methods:  GET
+presence_index_current:
+    path:     /current
+    defaults: { _controller: "EmployeeBundle:Presence:indexCurrent" }
+    methods:  GET
 
 presence_show:
     path:     /{idPresence}/show
@@ -15,10 +19,16 @@ presence_new:
 
 presence_edit:
     path:     /{idPresence}/edit
-    defaults: { _controller: "EmployeeBundle:Presence:edit" }
+    defaults: { _controller: "EmployeeBundle:Presence:editAjax" }
     methods:  [GET, POST]
-
+    options:
+            expose: true
 presence_delete:
     path:     /{idPresence}/delete
     defaults: { _controller: "EmployeeBundle:Presence:delete" }
     methods:  DELETE
+
+presence_newSheet:
+    path:     /newpsheet
+    defaults: { _controller: "EmployeeBundle:Presence:newPresenceSheet" }
+    methods:  GET

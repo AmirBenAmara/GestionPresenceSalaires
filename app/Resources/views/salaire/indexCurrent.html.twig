@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Salaires list</h1>
+    <h1>Salaires </h1>
     <a href="{{ path('salaire_newSheet') }}">Générer une nouvelle Feuille</a>
-    <table class="table">
+    <table id="salaires" class="table">
         <thead>
             <tr>
                 <th>Nom</th>
-                <th>Prenom</th>
-                <th>Datepayment</th>
-                <th>Montantweek</th>
+                <th>Prénom</th>
+                <th>Date de paiement</th>
+                <th>Montant Hebdomadaire</th>
                 <th>Avance</th>
+                <th>Salaire</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,14 +24,97 @@
                 <td>{% if salaire.datePayment %}{{ salaire.datePayment|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ salaire.montantweek }}</td>
                 <td>{{ salaire.avance }}</td>
+                <td>{{ salaire.montantweek - salaire.avance}}</td>
+                <td>{{ salaire.isPaid}}</td>
                 <td>
 
-                            <a class="btn btn-primary" href="{{ path('salaire_edit', { 'idSalaire': salaire.idSalaire }) }}">Avance</a>
-                 </td>
+
+
+                    <a class="btn btn-primary"  data-toggle="modal"  data-Salaire="{{ salaire.idSalaire }}" href="#editModal">
+                        Avance
+                    </a>
+
+                    <a class="btn btn-danger" href="{{ path('salaire_pay', { 'idSalaire': salaire.idSalaire }) }}">
+                        Payer
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
 
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block ajax %}
+
+
+    <script>
+
+
+
+        $('#editModal').on('shown.bs.modal', function (e) {
+            var myIdSalaire = $(e.relatedTarget).data('salaire');
+            var path=  Routing.generate('salaire_edit', { idSalaire: myIdSalaire });
+            console.log(path);
+            var modal = $(this);
+            $.ajax(path, {
+                success: function(data) {
+                    modal.find('.modal-body').html(data);
+                }
+            });
+        });
+
+        $(document).on('submit', 'form', function(e){
+            // il est impératif de commencer avec cette méthode qui va empêcher le navigateur d'envoyer le formulaire lui-même
+            e.preventDefault();
+
+            $form = $(e.target);
+            console.log($form);
+            modal = $('#editModal');
+
+
+            var $submitButton = $form.find(':submit');
+            $submitButton.html('<i class="fas fa-spinner fa-pulse"></i>');
+            $submitButton.prop('disabled', true);
+
+            // ajaxSubmit du plugin ajaxForm nécessaire pour l'upload de fichier
+
+            $form.ajaxSubmit({
+                type: 'post',
+                success: function(data) {
+                    //console.log(data);
+                    $html=data;
+                  //  console.log($html);
+                    $('#salaires').html($html);
+                    modal.modal('hide');
+                    return false;
+
+                },
+                error: function(jqXHR, status, error) {
+                    $submitButton.html(button.data('label'));
+                    $submitButton.prop('disabled', false);
+                }
+            });
+
+        });
+
+    </script>
 {% endblock %}

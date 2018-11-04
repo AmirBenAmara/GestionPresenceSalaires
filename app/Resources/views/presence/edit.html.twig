@@ -1,7 +1,6 @@
-{% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Presence edit</h1>
+ {#   <h1>Presence edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -17,5 +16,16 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul>#}
+
+
+
+
+
+                {{ form_start(edit_form, { 'method' : 'post','id':'formEditP' ,'action': path('presence_edit', { 'idPresence' : presence.idPresence }) }) }}
+
+                {{ form_widget(edit_form) }}
+                <input type="submit" class="btn btn-primary" value="valider" />
+                {{ form_end(edit_form) }}
+
 {% endblock %}

@@ -1,9 +1,7 @@
-{% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Presences list</h1>
-    <a href="{{ path('presence_newSheet') }}">Générer une nouvelle Feuille</a>
-    <table class="table">
+
+
         <thead>
             <tr>
                 <th>Nom</th>
@@ -11,13 +9,12 @@
                 <th>Date</th>
                 <th>Status</th>
                 <th>Lieu</th>
-                <th>Montantday</th>
-
-
+                <th>Montant Journalier</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+
         {% for presence in presences %}
             <tr>
                 <td>{{ presence.idEmployee.prenom }}</td>
@@ -39,7 +36,7 @@
                 </td>#}
                 <td>
                                 <a class="btn btn-primary"  data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
-                                    Edit
+                                    Remplir
                                 </a>
 
 
@@ -47,79 +44,6 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
 
 
-
-
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-{% endblock %}
-{% block ajax %}
-
-
-    <script>
-
-
-
-     $('#editModal').on('shown.bs.modal', function (e) {
-        var myIdPresence = $(e.relatedTarget).data('presence');
-        var path=  Routing.generate('presence_edit', { idPresence: myIdPresence });
-        console.log(path);
-        var modal = $(this);
-        $.ajax(path, {
-            success: function(data) {
-                modal.find('.modal-body').html(data);
-            }
-        });
-    });
-
-    $(document).on('submit', 'form', function(e){
-        // il est impératif de commencer avec cette méthode qui va empêcher le navigateur d'envoyer le formulaire lui-même
-        e.preventDefault();
-
-        $form = $(e.target);
-        console.log($form);
-        modal = $('#editModal');
-
-        var title = $('#employeebundle_presence_idEmployee').val();
-
-        var $submitButton = $form.find(':submit');
-        $submitButton.html('<i class="fas fa-spinner fa-pulse"></i>');
-        $submitButton.prop('disabled', true);
-
-        // ajaxSubmit du plugin ajaxForm nécessaire pour l'upload de fichier
-
-        $form.ajaxSubmit({
-            type: 'post',
-            success: function(data) {
-
-                    modal.modal('hide');
-                    return false;
-
-            },
-            error: function(jqXHR, status, error) {
-                $submitButton.html(button.data('label'));
-                $submitButton.prop('disabled', false);
-            }
-        });
-
-    });
-
-</script>
 {% endblock %}

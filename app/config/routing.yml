@@ -1,7 +1,22 @@
-employee:
-    resource: "@EmployeeBundle/Resources/config/routing.yml"
-    prefix:   /
-
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+employee_employee:
+    resource: "@EmployeeBundle/Resources/config/routing/employee.yml"
+    prefix:   /employee
+
+employee_presence:
+    resource: "@EmployeeBundle/Resources/config/routing/presence.yml"
+    prefix:   /presence
+
+employee_salaire:
+    resource: "@EmployeeBundle/Resources/config/routing/salaire.yml"
+    prefix:   /salaire
+
+employee_week:
+    resource: "@EmployeeBundle/Resources/config/routing/week.yml"
+    prefix:   /week
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

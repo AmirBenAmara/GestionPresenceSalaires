@@ -67,6 +67,37 @@ class Presence
     protected $idEmployee;
 
     /**
+     * @return Week
+     */
+    public function getIdWeek()
+    {
+        return $this->idWeek;
+    }
+
+    /**
+     * @param Week $idWeek
+     */
+    public function setIdWeek($idWeek)
+    {
+        $this->idWeek = $idWeek;
+    }
+
+
+
+    /**
+     * @var Week
+     *
+     * @ORM\ManyToOne(targetEntity="Week")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idWeek", referencedColumnName="idWeek")
+     * })
+     */
+    protected $idWeek;
+
+
+
+
+    /**
      * Presence constructor.
      * @param int $idPresence
      */
@@ -168,6 +199,22 @@ class Presence
     public function setIdEmployee($idEmployee)
     {
         $this->idEmployee = $idEmployee;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMontantDay()
+    {
+        return $this->montantDay;
+    }
+
+    /**
+     * @param int $montantDay
+     */
+    public function setMontantDay($montantDay)
+    {
+        $this->montantDay = $montantDay;
     }
 
 

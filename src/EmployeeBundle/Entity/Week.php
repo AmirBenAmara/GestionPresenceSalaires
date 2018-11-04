@@ -41,6 +41,60 @@ class Week
      */
     protected $dateFin;
 
+    function __toString()
+    {
+       return (string)$this->idWeek;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getIdWeek()
+    {
+        return $this->idWeek;
+    }
+
+    /**
+     * @param int $idWeek
+     */
+    public function setIdWeek($idWeek)
+    {
+        $this->idWeek = $idWeek;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateDebut()
+    {
+        return $this->dateDebut;
+    }
+
+    /**
+     * @param \DateTime $dateDebut
+     */
+    public function setDateDebut($dateDebut)
+    {
+        $this->dateDebut = $dateDebut;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateFin()
+    {
+        return $this->dateFin;
+    }
+
+    /**
+     * @param \DateTime $dateFin
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->dateFin = $dateFin;
+    }
+
 
 
 }

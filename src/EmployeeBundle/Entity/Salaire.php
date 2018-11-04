@@ -42,10 +42,37 @@ class Salaire
      */
     protected $montantweek;
 
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="isPaid", type="string", length=30, nullable=false,options={"default":"pas encore payé"})
+     */
+    protected $isPaid ;
+
+    /**
+     * @return string
+     */
+    public function getIsPaid()
+    {
+        return $this->isPaid;
+    }
+
+    /**
+     * @param string $isPaid
+     */
+    public function setIsPaid($isPaid)
+    {
+        $this->isPaid = $isPaid;
+    }
+
+
+
     /**
      * @var integer
      *
-     * @ORM\Column(name="montantweek", type="integer", nullable=true)
+     * @ORM\Column(name="avance", type="integer", nullable=true)
      *
      */
     protected $avance;
@@ -59,6 +86,22 @@ class Salaire
      * })
      */
     protected $idEmployee;
+
+    /**
+     * @return Week
+     */
+    public function getIdWeek()
+    {
+        return $this->idWeek;
+    }
+
+    /**
+     * @param Week $idWeek
+     */
+    public function setIdWeek($idWeek)
+    {
+        $this->idWeek = $idWeek;
+    }
 
     /**
      * @var Week
@@ -120,7 +163,7 @@ class Salaire
      */
     public function setMontantweek($montantweek)
     {
-        $this->montantweek = $montantweek;
+        $this->montantweek += $montantweek;
     }
 
     /**

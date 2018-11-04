@@ -1,21 +1,14 @@
-{% extends 'base.html.twig' %}
+
 
 {% block body %}
-    <h1>Salaire edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+
+    {{ form_start(edit_form, { 'method' : 'post' ,'action': path('salaire_edit', { 'idSalaire' : salaire.idSalaire }) }) }}
+
+    {{ form_widget(edit_form) }}
+        <input type="submit" class="btn btn-primary" value="valider" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('salaire_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+
 {% endblock %}
