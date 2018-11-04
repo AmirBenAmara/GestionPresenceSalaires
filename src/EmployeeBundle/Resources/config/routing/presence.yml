@@ -1,0 +1,24 @@
+presence_index:
+    path:     /
+    defaults: { _controller: "EmployeeBundle:Presence:index" }
+    methods:  GET
+
+presence_show:
+    path:     /{idPresence}/show
+    defaults: { _controller: "EmployeeBundle:Presence:show" }
+    methods:  GET
+
+presence_new:
+    path:     /new
+    defaults: { _controller: "EmployeeBundle:Presence:new" }
+    methods:  [GET, POST]
+
+presence_edit:
+    path:     /{idPresence}/edit
+    defaults: { _controller: "EmployeeBundle:Presence:edit" }
+    methods:  [GET, POST]
+
+presence_delete:
+    path:     /{idPresence}/delete
+    defaults: { _controller: "EmployeeBundle:Presence:delete" }
+    methods:  DELETE

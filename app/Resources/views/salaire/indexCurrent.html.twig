@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Salaires list</h1>
+    <a href="{{ path('salaire_newSheet') }}">Générer une nouvelle Feuille</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Datepayment</th>
+                <th>Montantweek</th>
+                <th>Avance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for salaire in salaires %}
+            <tr>
+                <td>{{ salaire.idEmployee.nom }}</td>
+                <td>{{ salaire.idEmployee.prenom }}</td>
+                <td>{% if salaire.datePayment %}{{ salaire.datePayment|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ salaire.montantweek }}</td>
+                <td>{{ salaire.avance }}</td>
+                <td>
+
+                            <a class="btn btn-primary" href="{{ path('salaire_edit', { 'idSalaire': salaire.idSalaire }) }}">Avance</a>
+                 </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

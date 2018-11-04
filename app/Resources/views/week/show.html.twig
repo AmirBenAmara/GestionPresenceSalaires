@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Week</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idweek</th>
+                <td>{{ week.idWeek }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{% if week.dateDebut %}{{ week.dateDebut|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{% if week.dateFin %}{{ week.dateFin|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('week_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('week_edit', { 'idWeek': week.idWeek }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,51 @@
+
+{% block body %}
+
+
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Lieu</th>
+                <th>Montantday</th>
+
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        {% for presence in presences %}
+            <tr>
+                <td>{{ presence.idEmployee.prenom }}</td>
+                <td>{{ presence.idEmployee.nom }}</td>
+                <td>{% if presence.date %}{{ presence.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ presence.status }}</td>
+                <td>{{ presence.lieu }}</td>
+                <td>{{ presence.montantDay }}</td>
+
+                {#<td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('presence_show', { 'idPresence': presence.idPresence }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('presence_edit', { 'idPresence': presence.idPresence }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>#}
+                <td>
+                                <a class="btn btn-primary"  data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
+                                    Edit
+                                </a>
+
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+
+{% endblock %}

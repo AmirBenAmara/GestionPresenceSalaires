@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Presence</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idpresence</th>
+                <td>{{ presence.idPresence }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if presence.date %}{{ presence.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ presence.status }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ presence.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Montantday</th>
+                <td>{{ presence.montantDay }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('presence_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('presence_edit', { 'idPresence': presence.idPresence }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

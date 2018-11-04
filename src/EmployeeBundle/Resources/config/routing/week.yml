@@ -1,0 +1,24 @@
+week_index:
+    path:     /
+    defaults: { _controller: "EmployeeBundle:Week:index" }
+    methods:  GET
+
+week_show:
+    path:     /{idWeek}/show
+    defaults: { _controller: "EmployeeBundle:Week:show" }
+    methods:  GET
+
+week_new:
+    path:     /new
+    defaults: { _controller: "EmployeeBundle:Week:new" }
+    methods:  [GET, POST]
+
+week_edit:
+    path:     /{idWeek}/edit
+    defaults: { _controller: "EmployeeBundle:Week:edit" }
+    methods:  [GET, POST]
+
+week_delete:
+    path:     /{idWeek}/delete
+    defaults: { _controller: "EmployeeBundle:Week:delete" }
+    methods:  DELETE

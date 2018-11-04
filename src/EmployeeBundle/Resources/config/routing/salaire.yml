@@ -1,0 +1,24 @@
+salaire_index:
+    path:     /
+    defaults: { _controller: "EmployeeBundle:Salaire:index" }
+    methods:  GET
+
+salaire_show:
+    path:     /{idSalaire}/show
+    defaults: { _controller: "EmployeeBundle:Salaire:show" }
+    methods:  GET
+
+salaire_new:
+    path:     /new
+    defaults: { _controller: "EmployeeBundle:Salaire:new" }
+    methods:  [GET, POST]
+
+salaire_edit:
+    path:     /{idSalaire}/edit
+    defaults: { _controller: "EmployeeBundle:Salaire:edit" }
+    methods:  [GET, POST]
+
+salaire_delete:
+    path:     /{idSalaire}/delete
+    defaults: { _controller: "EmployeeBundle:Salaire:delete" }
+    methods:  DELETE
