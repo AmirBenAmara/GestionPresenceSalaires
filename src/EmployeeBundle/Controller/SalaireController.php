@@ -195,6 +195,7 @@ class SalaireController extends Controller
             $salaire->setAvance(0);
             $salaire->setDatePayment($this->getCurrentWeek()->getDateFin());
             $salaire->setMontantweek(0);
+            $salaire->setIsPaid("pas encore payé");
             $em->persist($salaire);
 
             if (($i % $batchSize) === 0) {
