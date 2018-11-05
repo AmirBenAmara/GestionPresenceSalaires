@@ -1,45 +1,68 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Employees list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idemployee</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Cin</th>
-                <th>Numtel</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for employee in employees %}
-            <tr>
-                <td><a href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">{{ employee.idEmployee }}</a></td>
-                <td>{{ employee.nom }}</td>
-                <td>{{ employee.prenom }}</td>
-                <td>{{ employee.CIN }}</td>
-                <td>{{ employee.numTel }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('employee_new') }}">Create a new employee</a>
-        </li>
-    </ul>
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">liste EMPLOYEES</h2>
+                        <button class="fa fa icon" type="submit" ></button>
+                        <a href="{{ path('employee_new') }}">Create a new employee</a>
+                        <div class="table-responsive m-t-40">
+                            <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Idemployee</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Cin</th>
+                                    <th>Numtel</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>Idemployee</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Cin</th>
+                                    <th>Numtel</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                {% for employee in employees %}
+                                    <tr>
+                                        <td><a href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">{{ employee.idEmployee }}</a></td>
+                                        <td>{{ employee.nom }}</td>
+                                        <td>{{ employee.prenom }}</td>
+                                        <td>{{ employee.CIN }}</td>
+                                        <td>{{ employee.numTel }}</td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">show</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">edit</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
 {% endblock %}

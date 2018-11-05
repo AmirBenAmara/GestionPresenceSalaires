@@ -1,23 +1,362 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-        {#<link rel="stylesheet" href="{{ asset('libs/bootstrap.min.css') }}"/>#}
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
+        <title> FRIDAVERT </title>
+        <!-- Bootstrap Core CSS -->
+        <link href="{{ asset('assets/css/lib/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Custom CSS -->
+
+        <link href="{{ asset('assets/css/lib/calendar2/semantic.ui.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/lib/owl.carousel.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/css/helper.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+        <!--[if lt IE 9]>
+        <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-        {#    <script src="{{ asset('libs/jquery-3.3.1.min.js') }}"></script>
 
-            <script src="{{ asset('libs/jquery.form.min.js') }}"></script>
-            <script src="{{ asset('libs/bootstrap.min.js') }}"></script>#}
+    <body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
 
-               <script
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b><img src="{{ asset('assets/images/logo.png') }}" alt="homepage" class="dark-logo" style="height: 40px ; width: 40px;"/></b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span><img src="{{ asset('assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" /></span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <!-- Messages -->
+
+                        <!-- End Messages -->
+                    </ul>
+                    <!-- User profile and search -->
+                    <ul class="navbar-nav my-lg-0">
+
+                        <!-- Search -->
+                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search here"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                        </li>
+                        <!-- Comment -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-success btn-circle m-r-10"><i class="ti-calendar"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is another title</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is title</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is another title</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Comment -->
+                        <!-- Messages -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">You have 4 new messages</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="{{ asset('assets/images/users/5.jpg') }}" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="{{ asset('assets/images/users/2.jpg') }}" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>John Doe</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="{{ asset('assets/images/users/3.jpg') }}" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Mr. John</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="{{ asset('assets/images/users/4.jpg') }}" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Messages -->
+                        <!-- Profile -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets/images/users/5.jpg')}}" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
+                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Home</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-primary pull-right">2</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="index.html">Ecommerce </a></li>
+                                <li><a href="index1.html">Analytics </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Apps</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Email</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="email-compose.html">Compose</a></li>
+                                <li><a href="email-read.html">Read</a></li>
+                                <li><a href="email-inbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Charts</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="chart-flot.html">Flot</a></li>
+                                <li><a href="chart-morris.html">Morris</a></li>
+                                <li><a href="chart-chartjs.html">ChartJs</a></li>
+                                <li><a href="chart-chartist.html">Chartist </a></li>
+                                <li><a href="chart-amchart.html">AmChart</a></li>
+                                <li><a href="chart-echart.html">EChart</a></li>
+                                <li><a href="chart-sparkline.html">Sparkline</a></li>
+                                <li><a href="chart-peity.html">Peity</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Features</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Bootstrap UI <span class="label label-rouded label-warning pull-right">6</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="ui-alert.html">Alert</a></li>
+                                <li><a href="ui-button.html">Button</a></li>
+                                <li><a href="ui-dropdown.html">Dropdown</a></li>
+                                <li><a href="ui-progressbar.html">Progressbar</a></li>
+                                <li><a href="ui-tab.html">Tab</a></li>
+                                <li><a href="ui-typography.html">Typography</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Components <span class="label label-rouded label-danger pull-right">6</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="uc-calender.html">Calender</a></li>
+                                <li><a href="uc-datamap.html">Datamap</a></li>
+                                <li><a href="uc-nestedable.html">Nestedable</a></li>
+                                <li><a href="uc-sweetalert.html">Sweetalert</a></li>
+                                <li><a href="uc-toastr.html">Toastr</a></li>
+                                <li><a href="uc-weather.html">Weather</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Forms</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="form-basic.html">Basic Forms</a></li>
+                                <li><a href="form-layout.html">Form Layout</a></li>
+                                <li><a href="form-validation.html">Form Validation</a></li>
+                                <li><a href="form-editor.html">Editor</a></li>
+                                <li><a href="form-dropzone.html">Dropzone</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Tables</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="table-bootstrap.html">Basic Tables</a></li>
+                                <li><a href="table-datatable.html">Data Tables</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Layout</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Layout</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="layout-blank.html">Blank</a></li>
+                                <li><a href="layout-boxed.html">Boxed</a></li>
+                                <li><a href="layout-fix-header.html">Fix Header</a></li>
+                                <li><a href="layout-fix-sidebar.html">Fix Sidebar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">EXTRA</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Pages <span class="label label-rouded label-success pull-right">8</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+
+                                <li><a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success">6</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="page-login.html">Login</a></li>
+                                        <li><a href="page-register.html">Register</a></li>
+                                        <li><a href="page-invoice.html">Invoice</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#" class="has-arrow">Error Pages</a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="page-error-400.html">400</a></li>
+                                        <li><a href="page-error-403.html">403</a></li>
+                                        <li><a href="page-error-404.html">404</a></li>
+                                        <li><a href="page-error-500.html">500</a></li>
+                                        <li><a href="page-error-503.html">503</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-map-marker"></i><span class="hide-menu">Maps</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="map-google.html">Google</a></li>
+                                <li><a href="map-vector.html">Vector</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
+
+        <div class="page-wrapper">
+
+        {% block body %}
+
+        {% endblock %}
+        </div>
+
+    </div>
+    <!-- End Wrapper -->
+
+    <!-- All Jquery -->
+    <script src="{{ asset('assets/js/lib/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{{ asset('assets/js/lib/bootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
+    <!--Menu sidebar -->
+    <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
+    <!--stickey kit -->
+    <script src="{{ asset('assets/js/lib/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
+    <!--Custom JavaScript -->
+
+    <!-- Amchart -->
+    <script src="{{ asset('assets/js/lib/morris-chart/raphael-min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/morris-chart/morris.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/morris-chart/dashboard1-init.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/calendar-2/moment.latest.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/calendar-2/semantic.ui.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/calendar-2/prism.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/calendar-2/pignose.calendar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/calendar-2/pignose.init.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/owl-carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/owl-carousel/owl.carousel-init.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+
+
+    <script src="{{ asset('js/custom.min.js') }}"></script>
+
+
+    <script src="{{ asset('assets/js/lib/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/datatables-init.js') }}"></script>
+
+     <script src="{{ asset('libs/jquery-3.3.1.min.js') }}"></script>
+
+        <script src="{{ asset('libs/jquery.form.min.js') }}"></script>
+        <script src="{{ asset('libs/bootstrap.min.js') }}"></script>
+
+             <script
                        src="https://code.jquery.com/jquery-3.3.1.min.js"
                        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                        crossorigin="anonymous"></script>
@@ -26,8 +365,9 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
             <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
             <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-        {% endblock %}
         {% block ajax %}
         {% endblock %}
+
     </body>
+
 </html>
