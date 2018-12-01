@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Salaires </h1>
     <a href="{{ path('salaire_newSheet') }}">Générer une nouvelle Feuille</a>
-    <table id="salaires" class="table">
+    <table id="salaires" class="display nowrap table table-hover table-striped table-bordered dataTable">
         <thead>
             <tr>
                 <th>Nom</th>
@@ -50,7 +50,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">Fermer X</span>
                 </button>
                 <h4 class="modal-title"></h4>
             </div>

@@ -44,14 +44,10 @@
                                         <td>{{ employee.CIN }}</td>
                                         <td>{{ employee.numTel }}</td>
                                         <td>
-                                            <ul>
-                                                <li>
-                                                    <a href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">show</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">edit</a>
-                                                </li>
-                                            </ul>
+
+                                                    <a class="btn btn-primary" href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">show</a>
+                                                    <a class="btn btn-danger" href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">edit</a>
+                                          
                                         </td>
                                     </tr>
                                 {% endfor %}

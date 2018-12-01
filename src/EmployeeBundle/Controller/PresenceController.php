@@ -219,7 +219,7 @@ class PresenceController extends Controller
 
 
         $this->GenerateNewPresencesForAllEmployees();
-        return $this->redirectToRoute('presence_index');
+        return $this->redirectToRoute('presence_index_current');
     }
 
     /**
