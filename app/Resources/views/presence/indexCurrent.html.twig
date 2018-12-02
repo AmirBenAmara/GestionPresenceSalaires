@@ -3,6 +3,75 @@
 {% block body %}
     <h1>Presences</h1>
     <a href="{{ path('presence_newSheet') }}">Générer une nouvelle Feuille</a>
+
+    <div class="table-responsive m-t-40">
+        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Nom Prenom</th>
+                <th>Lundi</th>
+                <th>Mardi</th>
+                <th>Mercredi</th>
+                <th>Jeudi</th>
+                <th>Vendredi</th>
+                <th>Samedi</th>
+                <th>Dimanche</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>Nom Prenom</th>
+                <th>Lundi</th>
+                <th>Mardi</th>
+                <th>Mercredi</th>
+                <th>Jeudi</th>
+                <th>Vendredi</th>
+                <th>Samedi</th>
+                <th>Dimanche</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for presence in presences %}
+                <tr>
+                    <td>{{ presence.idEmployee.prenom }} {{ presence.idEmployee.nom }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="">P</a>
+                        <a class="btn btn-danger" href="">A</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="">P</a>
+                        <a class="btn btn-danger" href="">A</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="">P</a>
+                        <a class="btn btn-danger" href="">A</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="">P</a>
+                        <a class="btn btn-danger" href="">A</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="">P</a>
+                        <a class="btn btn-danger" href="">A</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="">P</a>
+                        <a class="btn btn-danger" href="">A</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="">P</a>
+                        <a class="btn btn-danger" href="">A</a>
+                    </td>
+
+                    <td>
+
+
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <table id="presence" class="table">
         <thead>
             <tr>
