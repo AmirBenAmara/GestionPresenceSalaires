@@ -36,7 +36,8 @@
                     <td>{{ presence.idEmployee.prenom }} {{ presence.idEmployee.nom }}</td>
                     <td>
                         <a class="btn btn-primary" href="">P</a>
-                        <a class="btn btn-danger" href="">A</a>
+                        <a class="btn btn-danger" href="">A</a><br>
+                        {{ presence.status }}
                     </td>
                     <td>
                         <a class="btn btn-primary" href="">P</a>
@@ -109,7 +110,7 @@
                 <td>
                                 <a class="btn btn-primary"  data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
                                     Remplir
-                                </a>
+                                </a></td>
 
 
 

@@ -27,35 +27,43 @@ class Employee
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $idEmployee;
+    private $idEmployee;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=30, nullable=false)
      */
-    protected $nom;
+    private $nom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=30, nullable=false)
      */
-    protected $prenom;
+    private $prenom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="CIN", type="string", length=30, nullable=false)
      */
-    protected $CIN;
+    private $CIN;
 
     /**
      * @var string
      *
      * @ORM\Column(name="numTel", type="string", length=30, nullable=false)
      */
-    protected $numTel;
+    private $numTel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="SalaireJournalier", type="integer", nullable=true)
+     */
+    private $salaireJournalier;
+
 
     /**
      * Employee constructor.
@@ -145,6 +153,23 @@ class Employee
     {
         $this->numTel = $numTel;
     }
+
+    /**
+     * @return string
+     */
+    public function getSalaireJournalier()
+    {
+        return $this->salaireJournalier;
+    }
+
+    /**
+     * @param string $salaireJournalier
+     */
+    public function setSalaireJournalier($salaireJournalier)
+    {
+        $this->salaireJournalier = $salaireJournalier;
+    }
+
 
     function __toString()
     {
