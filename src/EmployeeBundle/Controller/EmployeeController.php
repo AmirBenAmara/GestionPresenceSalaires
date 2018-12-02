@@ -57,9 +57,23 @@ class EmployeeController extends Controller
      */
     public function showAction(Employee $employee)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $deleteForm = $this->createDeleteForm($employee);
+        $presences = $em->getRepository('EmployeeBundle:Presence')
+            ->findBy(array(
+                'idEmployee'=> $employee->getIdEmployee()
+            ));
+
+        $totalPresence =0;
+        $totalAbsence =0;
+        $totalNonRempli =0;
 
         return $this->render('employee/show.html.twig', array(
+            'totalPresence'=>$totalPresence,
+            'totalAbsence'=>$totalAbsence,
+            'totalNonRempli' => $totalNonRempli,
+            'presences' =>$presences,
             'employee' => $employee,
             'delete_form' => $deleteForm->createView(),
         ));
