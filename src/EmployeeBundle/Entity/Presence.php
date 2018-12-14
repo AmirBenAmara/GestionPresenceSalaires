@@ -57,6 +57,29 @@ class Presence
     protected $montantDay;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="day", type="integer", nullable=true)
+     *
+     */
+    protected $Day;
+
+    /**
+     * @return int
+     */
+    public function getDay()
+    {
+        return $this->Day;
+    }
+
+    /**
+     * @param int $Day
+     */
+    public function setDay($Day)
+    {
+        $this->Day = $Day;
+    }
+    /**
      * @var Employee
      *
      * @ORM\ManyToOne(targetEntity="Employee")

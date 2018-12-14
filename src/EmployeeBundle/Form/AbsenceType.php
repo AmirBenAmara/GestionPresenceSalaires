@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-class PresenceType extends AbstractType
+class AbsenceType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -14,7 +14,8 @@ class PresenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('date',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) )
-            ->add('status',null,array( 'label' => false ,'data'=>'Présent','attr'=>array('style'=>'display:none;')))
+            ->add('status',null,array( 'label' => false ,'data'=>'Absent','attr'=>array('style'=>'display:none;')))
+
             ->add('lieu')->add('montantDay')
             ->add('idWeek',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
             ->add('idEmployee',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) );

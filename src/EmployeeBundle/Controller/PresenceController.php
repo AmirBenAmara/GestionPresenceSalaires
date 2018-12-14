@@ -38,7 +38,7 @@ class PresenceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('date'=> new \DateTime()));
+        $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('idWeek'=> $this->getCurrentWeek()->getIdWeek()));
 
         return $this->render('presence/indexCurrent.html.twig', array(
             'presences' => $presences,
@@ -131,10 +131,16 @@ class PresenceController extends Controller
         $currentPresence =clone $presence;
         //$deleteForm = $this->createDeleteForm($presence);
         $em = $this->getDoctrine()->getManager();
-        $editForm = $this->createForm('EmployeeBundle\Form\PresenceType', $presence);
-        $editForm->handleRequest($request);
+        $status = $request->get('status');
+        $currentPresence->setStatus($status);
+        if($status == "Present"){
+            $editForm = $this->createForm('EmployeeBundle\Form\PresenceType', $presence);
 
-
+        }
+        else{
+            $editForm = $this->createForm('EmployeeBundle\Form\AbsenceType', $presence);
+        }
+            $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
 
@@ -144,7 +150,7 @@ class PresenceController extends Controller
             //echo($currentSalaire);
 
             // if new
-            if($currentPresence->getMontantDay()===0) {
+            if($currentPresence->getMontantDay()=== 0) {
                 $montant=$presence->getMontantDay();
                 $currentSalaire->setMontantweek($presence->getMontantDay());
                 //var_dump("new".$montant);
@@ -157,13 +163,10 @@ class PresenceController extends Controller
             }
 
             //var_dump($currentSalaire);
-
             $em->merge($currentSalaire);
             $em->flush();
 
             $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('date'=> new \DateTime()));
-
-
             return $this->render('presence/indexCurrentAjaxRefresh.html.twig', array(
                 'presences' => $presences,
 
@@ -228,28 +231,30 @@ class PresenceController extends Controller
     private function GenerateNewPresencesForAllEmployees() {
         $em = $this->getDoctrine()->getManager();
         $employees = $em->getRepository('EmployeeBundle:Employee')->findAll();
-        $batchSize = 4;
+
+
         for ($i = 1; $i <= sizeof($employees); ++$i) {
+            for ($j=0; $j<=6;$j++)
+            {
             $presence = new Presence();
             $presence->setIdEmployee($employees[$i-1]);
             $presence->setLieu("");
-            $presence->setDate(new \DateTime());
+            $presence->setDate((new \DateTime())->modify('+'.$j.' day'));
             $presence->setMontant(0);
             $presence->setMontantDay(0);
             $presence->setStatus("");
+            $presence->setDay($j);
             $presence->setIdWeek($this->getCurrentWeek());
+                $em->persist($presence);
+
+                    $em->flush();
 
 
-            $em->persist($presence);
-
-            if (($i % $batchSize) === 0) {
-                $em->flush();
-                $em->clear(); // Detaches all objects from Doctrine!
             }
-        }
 
-        $em->flush(); // Persist objects that did not make up an entire batch
-        $em->clear();    }
+        }
+        $em->clear(); // Detaches all objects from Doctrine!
+        }
 
 
     public function getCurrentWeek(){

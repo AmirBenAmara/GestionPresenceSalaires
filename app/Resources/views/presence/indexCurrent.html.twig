@@ -31,36 +31,65 @@
             </tr>
             </tfoot>
             <tbody>
-            {% for presence in presences %}
+            {% for presence in presences if presence.day ==0 %}
                 <tr>
                     <td>{{ presence.idEmployee.prenom }} {{ presence.idEmployee.nom }}</td>
                     <td>
-                        <a class="btn btn-primary" href="">P</a>
-                        <a class="btn btn-danger" href="">A</a>
+                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
+                            p
+                        </a>
+                        <a class="btn btn-danger"  data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
+                            A
+                        </a>
+
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="">P</a>
-                        <a class="btn btn-danger" href="">A</a>
+                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +1}}" href="#editModal">
+                            p
+                        </a>
+                        <a class="btn btn-danger"  data-toggle="modal"  data-Presence="{{ presence.idPresence +1}}" href="#editModal">
+                            A
+                        </a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="">P</a>
-                        <a class="btn btn-danger" href="">A</a>
+                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +2}}" href="#editModal">
+                            p
+                        </a>
+                        <a class="btn btn-danger"  data-toggle="modal"  data-Presence="{{ presence.idPresence +2}}" href="#editModal">
+                            A
+                        </a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="">P</a>
-                        <a class="btn btn-danger" href="">A</a>
+                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +3}}" href="#editModal">
+                            p
+                        </a>
+                        <a class="btn btn-danger"  data-toggle="modal"  data-Presence="{{ presence.idPresence +3}}" href="#editModal">
+                            A
+                        </a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="">P</a>
-                        <a class="btn btn-danger" href="">A</a>
+                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +4}}" href="#editModal">
+                            p
+                        </a>
+                        <a class="btn btn-danger"  data-toggle="modal"  data-Presence="{{ presence.idPresence +4}}" href="#editModal">
+                            A
+                        </a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="">P</a>
-                        <a class="btn btn-danger" href="">A</a>
+                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +5}}" href="#editModal">
+                            p
+                        </a>
+                        <a class="btn btn-danger"  data-toggle="modal"  data-Presence="{{ presence.idPresence +5}}" href="#editModal">
+                            A
+                        </a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="">P</a>
-                        <a class="btn btn-danger" href="">A</a>
+                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +6}}" href="#editModal">
+                            p
+                        </a>
+                        <a class="btn btn-danger"  data-toggle="modal"  data-Presence="{{ presence.idPresence +6}}" href="#editModal">
+                            A
+                        </a>
                     </td>
 
                     <td>
@@ -72,51 +101,6 @@
             </tbody>
         </table>
     </div>
-    <table id="presence" class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Lieu</th>
-                <th>Montant Journalier</th>
-
-
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for presence in presences %}
-            <tr>
-                <td>{{ presence.idEmployee.prenom }}</td>
-                <td>{{ presence.idEmployee.nom }}</td>
-                <td>{% if presence.date %}{{ presence.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ presence.status }}</td>
-                <td>{{ presence.lieu }}</td>
-                <td>{{ presence.montantDay }}</td>
-
-                {#<td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('presence_show', { 'idPresence': presence.idPresence }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('presence_edit', { 'idPresence': presence.idPresence }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>#}
-                <td>
-                                <a class="btn btn-primary"  data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
-                                    Remplir
-                                </a>
-
-
-
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
 
 
@@ -147,8 +131,9 @@
 
 
      $('#editModal').on('shown.bs.modal', function (e) {
+         var status = $(e.relatedTarget).data('status');
         var myIdPresence = $(e.relatedTarget).data('presence');
-        var path=  Routing.generate('presence_edit', { idPresence: myIdPresence });
+        var path=  Routing.generate('presence_edit', { idPresence: myIdPresence,status:status });
         console.log(path);
         var modal = $(this);
         $.ajax(path, {
