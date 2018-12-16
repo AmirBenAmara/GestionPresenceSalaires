@@ -17,9 +17,18 @@ presence_new:
     defaults: { _controller: "EmployeeBundle:Presence:new" }
     methods:  [GET, POST]
 
-presence_edit:
-    path:     /{idPresence}/edit
-    defaults: { _controller: "EmployeeBundle:Presence:editAjax" }
+
+
+presence_fill_A:
+    path:     /{idPresence}/editA
+    defaults: { _controller: "EmployeeBundle:Presence:editA" }
+    methods:  [GET, POST]
+    options:
+            expose: true
+
+presence_fill_P:
+    path:     /{idPresence}/editP
+    defaults: { _controller: "EmployeeBundle:Presence:editP" }
     methods:  [GET, POST]
     options:
             expose: true

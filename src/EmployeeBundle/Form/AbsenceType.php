@@ -1,7 +1,7 @@
 <?php
 
 namespace EmployeeBundle\Form;
-
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,8 +15,8 @@ class AbsenceType extends AbstractType
     {
         $builder->add('date',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) )
             ->add('status',null,array( 'label' => false ,'data'=>'Absent','attr'=>array('style'=>'display:none;')))
-
-            ->add('lieu')->add('montantDay')
+            ->add('montantDay',null,array( 'label' => false ,'data'=>0,'attr'=>array('style'=>'display:none;')))
+            ->add('raison', TextareaType::class)
             ->add('idWeek',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
             ->add('idEmployee',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) );
     }/**

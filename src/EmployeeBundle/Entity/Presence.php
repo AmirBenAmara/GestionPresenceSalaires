@@ -44,9 +44,33 @@ class Presence
     /**
      * @var string
      *
-     * @ORM\Column(name="lieu", type="string", length=30, nullable=false)
+     * @ORM\Column(name="lieu", type="string", length=30, nullable=true)
      */
     protected $lieu;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="raison", type="string", length=255, nullable=true)
+     */
+    protected $raison;
+
+    /**
+     * @return string
+     */
+    public function getRaison()
+    {
+        return $this->raison;
+    }
+
+    /**
+     * @param string $raison
+     */
+    public function setRaison($raison)
+    {
+        $this->raison = $raison;
+    }
 
     /**
      * @var integer
@@ -192,21 +216,6 @@ class Presence
         $this->lieu = $lieu;
     }
 
-    /**
-     * @return int
-     */
-    public function getMontant()
-    {
-        return $this->montant;
-    }
-
-    /**
-     * @param int $montant
-     */
-    public function setMontant($montant)
-    {
-        $this->montant = $montant;
-    }
 
     /**
      * @return Employee
@@ -240,7 +249,10 @@ class Presence
         $this->montantDay = $montantDay;
     }
 
-
+    function __toString()
+    {
+        return 'Status: '.$this->status.'Lieu: '.$this->lieu.'Montant: '.$this->getMontantDay().'Rasion: '.$this->raison;
+    }
 
 
 }

@@ -1,0 +1,8 @@
+{% block body %}
+                {{ form_start(edit_form, { 'method' : 'post' ,'action': path('presence_fill_A', { 'idPresence' : presence.idPresence }) }) }}
+
+                {{ form_widget(edit_form) }}
+                <input type="submit" class="btn btn-primary" value="valider" />
+                {{ form_end(edit_form) }}
+
+{% endblock %}

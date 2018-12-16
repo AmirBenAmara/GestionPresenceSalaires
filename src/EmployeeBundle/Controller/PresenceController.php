@@ -42,6 +42,7 @@ class PresenceController extends Controller
 
         return $this->render('presence/indexCurrent.html.twig', array(
             'presences' => $presences,
+            'idWeek'=> $this->getCurrentWeek()
         ));
     }
 
@@ -126,59 +127,82 @@ class PresenceController extends Controller
      * Displays a form to edit an existing presence entity.
      *
      */
-    public function editAjaxAction(Request $request, Presence $presence)
+    public function editPAction(Request $request, Presence $presence)
     {
         $currentPresence =clone $presence;
-        //$deleteForm = $this->createDeleteForm($presence);
         $em = $this->getDoctrine()->getManager();
-        $status = $request->get('status');
-        $currentPresence->setStatus($status);
-        if($status == "Present"){
-            $editForm = $this->createForm('EmployeeBundle\Form\PresenceType', $presence);
+        $editForm = $this->createForm('EmployeeBundle\Form\PresenceType', $presence);
 
-        }
-        else{
-            $editForm = $this->createForm('EmployeeBundle\Form\AbsenceType', $presence);
-        }
-            $editForm->handleRequest($request);
+        $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-
             $currentSalaire = $em->getRepository('EmployeeBundle:Salaire')->findOneBy(array('idWeek'=> $presence->getIdWeek()->getIdWeek(),
                 'idEmployee'=>$presence->getIdEmployee()->getIdEmployee()));
-
-            //echo($currentSalaire);
 
             // if new
             if($currentPresence->getMontantDay()=== 0) {
                 $montant=$presence->getMontantDay();
                 $currentSalaire->setMontantweek($presence->getMontantDay());
-                //var_dump("new".$montant);
+
             }
             // if edit or wrong
             else {
                 $montant=$presence->getMontantDay()-$currentPresence->getMontantDay();
                 $currentSalaire->setMontantweek($montant);
-               // var_dump("edit".$montant);
-            }
 
-            //var_dump($currentSalaire);
+            }
             $em->merge($currentSalaire);
             $em->flush();
-
             $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('date'=> new \DateTime()));
             return $this->render('presence/indexCurrentAjaxRefresh.html.twig', array(
                 'presences' => $presences,
-
             ));
         }
-
-        return $this->render('presence/edit.html.twig', array(
+        return $this->render('presence/editP.html.twig', array(
             'presence' => $presence,
             'edit_form' => $editForm->createView(),
-          //  'delete_form' => $deleteForm->createView(),
+            //  'delete_form' => $deleteForm->createView(),
         ));
     }
+
+
+    public function editAAction(Request $request, Presence $presence)
+    {
+        $currentPresence =clone $presence;
+        $em = $this->getDoctrine()->getManager();
+        $editForm = $this->createForm('EmployeeBundle\Form\AbsenceType', $presence);
+
+        $editForm->handleRequest($request);
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $currentSalaire = $em->getRepository('EmployeeBundle:Salaire')->findOneBy(array('idWeek'=> $presence->getIdWeek()->getIdWeek(),
+                'idEmployee'=>$presence->getIdEmployee()->getIdEmployee()));
+
+            // if new
+            if($currentPresence->getMontantDay()=== 0) {
+                $montant=$presence->getMontantDay();
+                $currentSalaire->setMontantweek($presence->getMontantDay());
+
+            }
+            // if edit or wrong
+            else {
+                $montant=$presence->getMontantDay()-$currentPresence->getMontantDay();
+                $currentSalaire->setMontantweek($montant);
+
+            }
+            $em->merge($currentSalaire);
+            $em->flush();
+            $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('date'=> new \DateTime()));
+            return $this->render('presence/indexCurrentAjaxRefresh.html.twig', array(
+                'presences' => $presences,
+            ));
+        }
+        return $this->render('presence/editA.html.twig', array(
+            'presence' => $presence,
+            'edit_form' => $editForm->createView(),
+            //  'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+
 
     /**
      * Deletes a presence entity.
@@ -240,9 +264,9 @@ class PresenceController extends Controller
             $presence->setIdEmployee($employees[$i-1]);
             $presence->setLieu("");
             $presence->setDate((new \DateTime())->modify('+'.$j.' day'));
-            $presence->setMontant(0);
             $presence->setMontantDay(0);
             $presence->setStatus("");
+            $presence->setRaison("");
             $presence->setDay($j);
             $presence->setIdWeek($this->getCurrentWeek());
                 $em->persist($presence);

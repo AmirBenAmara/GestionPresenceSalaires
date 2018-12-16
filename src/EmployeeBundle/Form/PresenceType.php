@@ -1,11 +1,9 @@
 <?php
 
 namespace EmployeeBundle\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class PresenceType extends AbstractType
 {
     /**
@@ -14,8 +12,10 @@ class PresenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('date',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) )
-            ->add('status',null,array( 'label' => false ,'data'=>'Présent','attr'=>array('style'=>'display:none;')))
-            ->add('lieu')->add('montantDay')
+            ->add('status',null,array( 'label' => false ,'data'=>'Present','attr'=>array('style'=>'display:none;')))
+            ->add('lieu')
+            ->add('raison',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
+            ->add('montantDay',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
             ->add('idWeek',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
             ->add('idEmployee',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) );
     }/**
