@@ -12,54 +12,65 @@
     {% endif %}
 {% endfor %}
 
-<h1>Employee</h1>
+<h1>Employee : {{ employee.nom }} {{ employee.prenom }}</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Nom</th>
-                <td>{{ employee.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ employee.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Cin</th>
-                <td>{{ employee.CIN }}</td>
-            </tr>
-            <tr>
-                <th>Numtel</th>
-                <td>{{ employee.numTel }}</td>
-            </tr>
-            <tr>
-                <th>total presence</th>
-                <td>{{ totalPresence }}</td>
-            </tr>
-            <tr>
-                <th>total absence</th>
-                <td>{{ totalAbsence }}</td>
-            </tr>
-            <tr>
-                <th>total no rempli</th>
-                <td>{{ totalNonRempli }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('employee_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Nom</th>
+                                <td>{{ employee.nom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prenom</th>
+                                <td>{{ employee.prenom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Cin</th>
+                                <td>{{ employee.CIN }}</td>
+                            </tr>
+                            <tr>
+                                <th>Numtel</th>
+                                <td>{{ employee.numTel }}</td>
+                            </tr>
+                            <tr>
+                                <th>Salaire/jour</th>
+                                <td>{{ employee.salaireJournalier }}</td>
+                            </tr>
+                            <tr>
+                                <th>total presence</th>
+                                <td>{{ totalPresence }}</td>
+                            </tr>
+                            <tr>
+                                <th>total absence</th>
+                                <td>{{ totalAbsence }}</td>
+                            </tr>
+                            <tr>
+                                <th>total no rempli</th>
+                                <td>{{ totalNonRempli }}</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <a class="btn btn-primary" href="{{ path('employee_index') }}">Back to the list</a>
+                                    <a class="btn btn-info" href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">Edit</a>
+
+                                </th>
+                                <td>{{ form_start(delete_form) }}
+                                    <input class="btn btn-danger" type="submit" value="Supprimer Employee">
+                                    {{ form_end(delete_form) }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+    </div>
+</div>
 <div class="table-responsive m-t-40">
     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
         <thead>

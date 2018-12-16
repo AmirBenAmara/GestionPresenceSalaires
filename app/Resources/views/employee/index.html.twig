@@ -11,43 +11,40 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">liste EMPLOYEES</h2>
-                        <button class="fa fa icon" type="submit" ></button>
-                        <a href="{{ path('employee_new') }}">Create a new employee</a>
+                        <a href="{{ path('employee_new') }}">AJOUTER UN EMPLOYE</a>
                         <div class="table-responsive m-t-40">
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>Idemployee</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Cin</th>
                                     <th>Numtel</th>
+                                    <th>salaire/jour</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Idemployee</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Cin</th>
                                     <th>Numtel</th>
+                                    <th>salaire/jour</th>
                                     <th>Actions</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
                                 {% for employee in employees %}
                                     <tr>
-                                        <td><a href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">{{ employee.idEmployee }}</a></td>
                                         <td>{{ employee.nom }}</td>
                                         <td>{{ employee.prenom }}</td>
                                         <td>{{ employee.CIN }}</td>
                                         <td>{{ employee.numTel }}</td>
+                                        <td>{{ employee.salaireJournalier }}</td>
                                         <td>
-
-                                                    <a class="btn btn-primary" href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">show</a>
-                                                    <a class="btn btn-danger" href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">edit</a>
-                                          
+                                                    <a class="btn btn-primary" href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">Rapport</a>
+                                                    <a class="btn btn-danger" href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">Modifier</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
