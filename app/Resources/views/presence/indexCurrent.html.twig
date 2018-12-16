@@ -2,7 +2,10 @@
 
 {% block body %}
     <h1>Presences</h1>
-    <a class="btn btn-primary" href="{{ path('presence_newSheet') }}">Générer une nouvelle Feuille</a>
+    {% if idWeek.dateFin<date("now") and date("now")>idWeek.dateDebut %}
+        <a class="btn btn-primary" href="{{ path('presence_newSheet') }}">Générer une nouvelle Feuille</a>
+
+        {% endif  %}
 
     <div class="table-responsive m-t-40">
         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
@@ -43,10 +46,7 @@
                         <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
                             A
                         </a>
-                        <a class="btn btn-info"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
 
-                            <i class="fa fa-info"></i>
-                        </a>
                     </td>
 
                     {%  if presence.day ==6 %}
