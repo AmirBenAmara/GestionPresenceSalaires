@@ -31,9 +31,11 @@
             </tr>
             </tfoot>
             <tbody>
-            {% for presence in presences if presence.day ==0 %}
+            {% for presence in presences  %}
+            {%  if presence.day ==0 %}
                 <tr>
                     <td>{{ presence.idEmployee.prenom }} {{ presence.idEmployee.nom }}</td>
+            {% endif %}
                     <td class="{{presence.status}}">
                         <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
                             p
@@ -41,59 +43,15 @@
                         <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
                             A
                         </a>
+                        <a class="btn btn-info"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
 
-                    </td>
-                    <td class="{{presence.status}}">
-                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +1}}" href="#editModal">
-                            p
-                        </a>
-                        <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence +1}}" href="#editModal">
-                            A
-                        </a>
-                    </td>
-                    <td class="{{presence.status}}">
-                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +2}}" href="#editModal">
-                            p
-                        </a>
-                        <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence +2}}" href="#editModal">
-                            A
-                        </a>
-                    </td>
-                    <td class="{{presence.status}}">
-                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +3}}" href="#editModal">
-                            p
-                        </a>
-                        <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence +3}}" href="#editModal">
-                            A
-                        </a>
-                    </td>
-                    <td class="{{presence.status}}">
-                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +4}}" href="#editModal">
-                            p
-                        </a>
-                        <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence +4}}" href="#editModal">
-                            A
-                        </a>
-                    </td>
-                    <td class="{{presence.status}}">
-                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +5}}" href="#editModal">
-                            p
-                        </a>
-                        <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence +5}}" href="#editModal">
-                            A
-                        </a>
-                    </td>
-                    <td class="{{presence.status}}">
-                        <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence +6}}" href="#editModal">
-                            p
-                        </a>
-                        <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence +6}}" href="#editModal">
-                            A
+                            <i class="fa fa-info"></i>
                         </a>
                     </td>
 
-
+                    {%  if presence.day ==6 %}
                 </tr>
+                    {% endif %}
             {% endfor %}
             </tbody>
         </table>
