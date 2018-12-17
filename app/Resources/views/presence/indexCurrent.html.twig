@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Presences</h1>
-    {% if idWeek.dateFin<date("now") and date("now")>idWeek.dateDebut %}
+    {% if idWeek.dateFin<date("now")%}
         <a class="btn btn-primary" href="{{ path('presence_newSheet') }}">Générer une nouvelle Feuille</a>
 
         {% endif  %}

@@ -32,7 +32,3 @@ salaire_delete:
     defaults: { _controller: "EmployeeBundle:Salaire:delete" }
     methods:  DELETE
 
-salaire_newSheet:
-    path:     /newssheet
-    defaults: { _controller: "EmployeeBundle:Salaire:newSalarySheet" }
-    methods:  GET
