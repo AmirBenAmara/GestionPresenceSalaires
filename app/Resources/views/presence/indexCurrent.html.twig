@@ -8,7 +8,7 @@
         {% endif  %}
 
     <div class="table-responsive m-t-40">
-        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="presencess" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
             <thead class="text-center">
             <tr>
                 <th>Nom Prenom</th>
@@ -49,7 +49,7 @@
                         </a>
                         {% if presence.status == "Present" %}
                             <p></p>
-                        <p class="align-text-bottom text-dark ">Lieu : {{ presence.lieu }}</p>
+                        <p class="text-dark ">Lieu : {{ presence.lieu }}</p>
                         {% elseif presence.status == "Absent" %}
                             <p></p>
                         <p class="clearfix text-dark">Raison : {{ presence.raison }}</p>
@@ -95,7 +95,6 @@
      $('#editModal').on('shown.bs.modal', function (e) {
          var status = $(e.relatedTarget).data('status');
         var myIdPresence = $(e.relatedTarget).data('presence');
-        console.log(status);
         if(status=="Present") {
 
         var path=  Routing.generate('presence_fill_P', { idPresence: myIdPresence });
@@ -130,13 +129,11 @@
         $form.ajaxSubmit({
             type: 'post',
             success: function(data) {
-                //console.log(data);
-                $html=data;
-                $('#presence').html($html);
+
+                console.log(data);
+                $html = data;
+               $('#presencess').html($html);
                     modal.modal('hide');
-
-               $('.modal-backdrop').remove();
-
                     return false;
 
             },
@@ -148,5 +145,17 @@
 
     });
 
-</script>
+
+
+     function escapeHtml(unsafe) {
+         return unsafe
+             .replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+     }
+
+
+    </script>
 {% endblock %}

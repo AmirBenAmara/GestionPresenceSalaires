@@ -1,6 +1,55 @@
-
 {% block body %}
 
+    <thead class="text-center">
+    <tr>
+        <th>Nom Prenom</th>
+        <th>Lundi <br> {{ idWeek.dateDebut |date('Y-m-d')}}</th>
+        <th>Mardi <br> {{ idWeek.dateDebut |date_modify("+1 day") |date('Y-m-d')}}</th>
+        <th>Mercredi <br> {{ idWeek.dateDebut |date_modify("+2 day") |date('Y-m-d')}}</th>
+        <th>Jeudi <br> {{ idWeek.dateDebut |date_modify("+3 day") |date('Y-m-d')}}</th>
+        <th>Vendredi <br> {{ idWeek.dateDebut |date_modify("+4 day") |date('Y-m-d')}}</th>
+        <th>Samedi <br> {{ idWeek.dateDebut |date_modify("+5 day") |date('Y-m-d')}}</th>
+        <th>Dimanche <br> {{ idWeek.dateDebut |date_modify("+6 day") |date('Y-m-d')}}</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>Nom Prenom</th>
+        <th>Lundi</th>
+        <th>Mardi</th>
+        <th>Mercredi</th>
+        <th>Jeudi</th>
+        <th>Vendredi</th>
+        <th>Samedi</th>
+        <th>Dimanche</th>
+    </tr>
+    </tfoot>
+    <tbody class="text-center">
+    {% for presence in presences  %}
+        {%  if presence.day ==0 %}
+            <tr>
+            <td>{{ presence.idEmployee.prenom }} {{ presence.idEmployee.nom }}</td>
+        {% endif %}
+        <td class="{{presence.status}}">
 
+            <a class="btn btn-primary" data-Status="Present"   data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
+                p
+            </a>
+            <a class="btn btn-danger"  data-Status="Absent" data-toggle="modal"  data-Presence="{{ presence.idPresence }}" href="#editModal">
+                A
+            </a>
+            {% if presence.status == "Present" %}
+                <p></p>
+                <p class="align-text-bottom text-dark ">Lieu : {{ presence.lieu }}</p>
+            {% elseif presence.status == "Absent" %}
+                <p></p>
+                <p class="clearfix text-dark">Raison : {{ presence.raison }}</p>
+            {% endif %}
+        </td>
 
+        {%  if presence.day ==6 %}
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
 {% endblock %}
