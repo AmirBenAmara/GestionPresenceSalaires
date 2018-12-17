@@ -14,7 +14,7 @@ class PresenceType extends AbstractType
         $builder->add('date',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) )
             ->add('status',null,array( 'label' => false ,'data'=>'Present','attr'=>array('style'=>'display:none;')))
             ->add('lieu')
-            ->add('raison',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
+            ->add('raison',null,array( 'label' => false ,'data'=>' ','attr'=>array('style'=>'display:none;')))
             ->add('montantDay',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
             ->add('idWeek',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
             ->add('idEmployee',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) );
