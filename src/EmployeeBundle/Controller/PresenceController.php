@@ -1,6 +1,7 @@
 <?php
 
 namespace EmployeeBundle\Controller;
+use EmployeeBundle\Entity\Week;
 use EmployeeBundle\Entity\Salaire;
 use EmployeeBundle\Entity\Presence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,7 +32,7 @@ class PresenceController extends Controller
 
 
     /**
-     * Lists all Current Dqy Presence entities.
+     * Lists all Current Day Presence entities.
      *
      */
     public function indexCurrentAction()
@@ -135,20 +136,20 @@ class PresenceController extends Controller
 
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em->flush();
             $currentSalaire = $em->getRepository('EmployeeBundle:Salaire')->findOneBy(array('idWeek'=> $presence->getIdWeek()->getIdWeek(),
                 'idEmployee'=>$presence->getIdEmployee()->getIdEmployee()));
-
-            // if new
-            if($currentPresence->getMontantDay()=== 0) {
-                $montant=$presence->getMontantDay();
-                $currentSalaire->setMontantweek($presence->getMontantDay());
-
-            }
-            // if edit or wrong
-            else {
-                $montant=$presence->getMontantDay()-$currentPresence->getMontantDay();
+            $montant=$presence->getIdEmployee()->getSalaireJournalier();
+            if($currentPresence->getStatus()=== "Absent") {
                 $currentSalaire->setMontantweek($montant);
-
+            }
+            // if edit
+            else   if($currentPresence->getStatus()=== "Present") {
+                $currentSalaire->setMontantweek(0);
+            }
+            // if new
+            else {
+                $currentSalaire->setMontantweek($montant);
             }
             $em->merge($currentSalaire);
             $em->flush();
@@ -173,20 +174,22 @@ class PresenceController extends Controller
 
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em->flush();
+      //
             $currentSalaire = $em->getRepository('EmployeeBundle:Salaire')->findOneBy(array('idWeek'=> $presence->getIdWeek()->getIdWeek(),
                 'idEmployee'=>$presence->getIdEmployee()->getIdEmployee()));
-
-            // if new
-            if($currentPresence->getMontantDay()=== 0) {
-                $montant=$presence->getMontantDay();
-                $currentSalaire->setMontantweek($presence->getMontantDay());
-
+            // if Wrong
+            $montant=$presence->getIdEmployee()->getSalaireJournalier();
+            if($currentPresence->getStatus()=== "Present") {
+                $currentSalaire->setMontantweek(-$montant);
             }
-            // if edit or wrong
-            else {
-                $montant=$presence->getMontantDay()-$currentPresence->getMontantDay();
-                $currentSalaire->setMontantweek($montant);
-
+            // if edit
+            else   if($currentPresence->getStatus()=== "Absent") {
+                $currentSalaire->setMontantweek(0);
+            }
+            // if new
+               else {
+                $currentSalaire->setMontantweek(0);
             }
             $em->merge($currentSalaire);
             $em->flush();
@@ -243,8 +246,8 @@ class PresenceController extends Controller
      * Returns the new generated Presence Sheets
      */
     public function newPresenceSheetAction(){
-
-
+        $this->newWeek();
+        $this->GenerateNewSalariesForAllEmployees();
         $this->GenerateNewPresencesForAllEmployees();
         return $this->redirectToRoute('presence_index_current');
     }
@@ -287,4 +290,59 @@ class PresenceController extends Controller
             ->setMaxResults(1)->getOneOrNullResult();
         return $currentWeek;
     }
+
+
+    public function newSalarySheetAction(){
+
+        $this->newWeek();
+        $this->GenerateNewSalariesForAllEmployees();
+        return $this->redirectToRoute('salaire_index_current');
+    }
+
+
+    private function GenerateNewSalariesForAllEmployees() {
+        $newWeek = $this->getCurrentWeek();
+        $em = $this->getDoctrine()->getManager();
+        $employees = $em->getRepository('EmployeeBundle:Employee')->findAll();
+        $batchSize = 4;
+        for ($i = 1; $i <= sizeof($employees); ++$i) {
+            $salaire = new Salaire();
+            $salaire->setIdEmployee($employees[$i-1]);
+            $salaire->setIdWeek($newWeek);
+            $salaire->setAvance(0);
+            $salaire->setDatePayment($this->getCurrentWeek()->getDateFin());
+            $salaire->setMontantweek(0);
+            $salaire->setIsPaid("pas encore payé");
+            $em->persist($salaire);
+
+            if (($i % $batchSize) === 0) {
+                $em->flush();
+                $em->clear(); // Detaches all objects from Doctrine!
+            }
+        }
+
+        $em->flush(); // Persist objects that did not make up an entire batch
+        $em->clear();
+    }
+
+
+    private function newWeek()
+    {
+        $lastWeek = $this->getCurrentWeek();
+        $week = new Week();
+        $date1=$lastWeek->getDateDebut();
+        $date2=$lastWeek->getDateFin();
+        $newStartDate = $date2->modify('+1 day');
+        $newEndDate = $date1->modify('+13 day');
+        $week->setDateDebut($newStartDate);
+        $week->setDateFin($newEndDate);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($week);
+        $em->flush();
+
+    }
+
+
+
+
 }
