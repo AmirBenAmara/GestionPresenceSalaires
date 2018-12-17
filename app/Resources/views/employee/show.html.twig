@@ -80,6 +80,7 @@
             <th>Date</th>
             <th>Status</th>
             <th>Lieu</th>
+            <th>Raison</th>
             <th>Montant Journalier</th>
         </tr>
         </thead>
@@ -91,6 +92,7 @@
                 <td>{% if presence.date %}{{ presence.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ presence.status }}</td>
                 <td>{{ presence.lieu }}</td>
+                <td>{{ presence.raison }}</td>
                 <td>{{ presence.montantDay }}</td>
 
             </tr>
