@@ -37,11 +37,11 @@
                                 <tbody>
                                 {% for employee in employees %}
                                     <tr>
-                                        <td>{{ employee.nom }}</td>
-                                        <td>{{ employee.prenom }}</td>
-                                        <td>{{ employee.CIN }}</td>
-                                        <td>{{ employee.numTel }}</td>
-                                        <td>{{ employee.salaireJournalier }}</td>
+                                        <td class="text-dark">{{ employee.nom }}</td>
+                                        <td class="text-dark">{{ employee.prenom }}</td>
+                                        <td class="text-dark">{{ employee.CIN }}</td>
+                                        <td class="text-dark">{{ employee.numTel }}</td>
+                                        <td class="text-dark">{{ employee.salaireJournalier }}</td>
                                         <td>
                                                     <a class="btn btn-primary" href="{{ path('employee_show', { 'idEmployee': employee.idEmployee }) }}">Rapport</a>
                                                     <a class="btn btn-danger" href="{{ path('employee_edit', { 'idEmployee': employee.idEmployee }) }}">Modifier</a>

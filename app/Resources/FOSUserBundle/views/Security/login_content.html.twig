@@ -4,6 +4,16 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
+<div class="navbar-header ">
+   <center> <a class="navbar-brand" href="">
+        <!-- Logo icon -->
+        <b><img src="{{ asset('assets/images/logo.png') }}" alt="homepage" class="dark-logo" style="height: 60px ; width: 50px;"/></b>
+        <!--End Logo icon -->
+        <!-- Logo text -->
+        <span><img src="{{ asset('assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" style="height: 40px ; width: 140px;"/></span>
+    </a></center>
+</div>
+
 <form action="{{ path("fos_user_security_check") }}" method="post">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -21,8 +31,10 @@
     </div>
     <div class="form-group">
 
-    <input type="checkbox"  class="form-control"id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">Remember me</label>
+   {# <input type="checkbox"  class="form-control"id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">Remember me</label>#}
     </div>
+    <center>
     <input class="btn btn-primary btn-flat m-b-30 m-t-30" type="submit" id="_submit" name="_submit" value="Login" />
+    </center>
 </form>

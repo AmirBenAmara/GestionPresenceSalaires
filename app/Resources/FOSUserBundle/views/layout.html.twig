@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/logo.png') }}">
+    <title>FRIDAVERT</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('assets/css/lib/bootstrap/bootstrap.min.css') }}" rel="stylesheet">    <!-- Custom CSS -->
     <link href="{{ asset('assets/css/helper.css" rel="stylesheet') }}">
@@ -30,7 +30,7 @@
         <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
 </div>
 <!-- Main wrapper  -->
-<div id="main-wrapper">
+<div id="main-wrapper" style="margin-top: 5%">
 
     <div class="unix-login">
         <div class="container-fluid">
@@ -45,7 +45,7 @@
                                         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                     </a>
                                 {% else %}
-                                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                    {#<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
                                 {% endif %}
                             </div>
 
