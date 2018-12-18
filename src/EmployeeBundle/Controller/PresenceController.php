@@ -153,9 +153,10 @@ class PresenceController extends Controller
             }
             $em->merge($currentSalaire);
             $em->flush();
-            $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('date'=> new \DateTime()));
+            $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('idWeek'=> $this->getCurrentWeek()->getIdWeek()));
             return $this->render('presence/indexCurrentAjaxRefresh.html.twig', array(
                 'presences' => $presences,
+                'idWeek'=> $this->getCurrentWeek()
             ));
         }
         return $this->render('presence/editP.html.twig', array(
@@ -193,9 +194,10 @@ class PresenceController extends Controller
             }
             $em->merge($currentSalaire);
             $em->flush();
-            $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('date'=> new \DateTime()));
+            $presences = $em->getRepository('EmployeeBundle:Presence')->findBy(array('idWeek'=> $this->getCurrentWeek()->getIdWeek()));
             return $this->render('presence/indexCurrentAjaxRefresh.html.twig', array(
                 'presences' => $presences,
+                'idWeek'=> $this->getCurrentWeek()
             ));
         }
         return $this->render('presence/editA.html.twig', array(

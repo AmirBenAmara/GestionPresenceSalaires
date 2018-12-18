@@ -17,6 +17,7 @@ class AbsenceType extends AbstractType
             ->add('status',null,array( 'label' => false ,'data'=>'Absent','attr'=>array('style'=>'display:none;')))
             ->add('montantDay',null,array( 'label' => false ,'data'=>0,'attr'=>array('style'=>'display:none;')))
             ->add('raison', TextareaType::class)
+            ->add('lieu',null,array( 'label' => false ,'data'=>' ','attr'=>array('style'=>'display:none;')))
             ->add('idWeek',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')))
             ->add('idEmployee',null,array( 'label' => false ,'attr'=>array('style'=>'display:none;')) );
     }/**
